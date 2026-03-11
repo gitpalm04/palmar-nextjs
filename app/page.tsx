@@ -149,7 +149,6 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 flex flex-col gap-12">
           {/* TITLE */}
           <div className="text-center">
-            <p className="text-sm text-muted-foreground">Nossos</p>
             <h2 className="text-3xl font-bold">Serviços</h2>
           </div>
 
@@ -240,11 +239,17 @@ export default function Home() {
 
       {/* PROPERTIES */}
 
-      <section id="properties" className="py-28 ">
+      <section id="properties" className="py-28 relative -mt-24">
+        <div className="absolute inset-0 bg-linear-to-br from-amber-300/20 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-linear-to-bl from-zinc-900/50 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+        
+        
         <div className="mx-auto max-w-7xl px-6 flex flex-col gap-14">
+          
           {/* HEADER */}
 
           <div className="grid md:grid-cols-2 gap-10 items-start">
+
             <div className="flex flex-col gap-4">
               <span className="text-sm flex items-center gap-2">
                 ● Featured Properties

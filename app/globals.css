@@ -27,7 +27,23 @@ body {
   overflow-x: hidden;
 }
 
+.h1,
+.h2,
+.h3 {
+  line-height: 1.3;
+}
 
+.h1 {
+  font-size: 1.875rem;
+  line-height: 1;
+}
+
+.h2 { font-size: 1.5rem; }
+
+.h3 {
+  font-size: 1.125rem;
+
+}
 
 /* =========================
    IMAGENS
