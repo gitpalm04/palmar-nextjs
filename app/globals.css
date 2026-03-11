@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+:root {
+  --dark: hsl(188, 63%, 7%);
+  --gray: hsl(9, 5%, 27%);
+  --cadet: hsl(197, 3%, 52%);
+  --yellow: hsl(59, 97%, 61%);
+  --light-gray: hsl(0, 0%, 91%);
+  --white: hsl(0, 0%, 95%);
+  --black: hsl(0, 0%, 7%);
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+
+/* =========================
+   IMAGENS
+========================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: black;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cadet);
+  border-radius: 0px;
+}
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+/* ==== Card services ==== */
+
+@keyframes floatingCard {
+  0% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotateX(2deg) rotateY(-2deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+.card-float {
+  animation: floatingCard 6s ease-in-out infinite;
+}
+
