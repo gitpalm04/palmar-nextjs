@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-import { IoCheckmarkOutline } from "react-icons/io5";
+import { IoCheckmarkOutline, IoHome } from "react-icons/io5";
 
 export default function Home() {
   return (
@@ -38,13 +38,13 @@ export default function Home() {
             {/* LEFT */}
             <div className="flex flex-col gap-6">
               <span className="flex items-center gap-2 bg-white border px-4 py-1 rounded-full text-sm w-fit">
-                ● Smart Living, Simplified
+                <IoHome /> Transformando sonhos em endereços
               </span>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-black">
-                We Specialize <br />
-                in All Aspects of <br />
-                Housing
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-black ">
+                Seu futuro <br />
+                imóvel <br />
+                está aqui
               </h1>
             </div>
 
@@ -53,20 +53,21 @@ export default function Home() {
               <div className="text-2xl">✦</div>
 
               <p>
-                Gerenciando cada um imóvel com cuidado e dedicação
-                Reliable housing solutions built for efficiency and comfort.
-                Smart, user-centric design for connected communities.
+                Trabalhamos com imóveis próprios, oferecendo opções selecionadas
+                para venda e locação. Gerenciamos cada propriedade com dedicação
+                para garantir conforto, segurança e tranquilidade aos nossos
+                clientes.
               </p>
             </div>
           </div>
 
           {/* HOUSE IMAGE */}
-          <div className="relative w-full h-[520px] md:h-[640px] mt-10">
+          <div className="relative w-full h-[400px] md:h-[640px] mt-10">
             <Image
-              src="/images/hero/3d-rendering-cartoon-house.jpg"
+              src="/images/hero/home_hero.jpg"
               alt="Modern House"
               fill
-              className="object-contain"
+              className="object-contain mix-blend-multiply mask-b-from-fuchsia-50 "
               priority
             />
           </div>
@@ -74,11 +75,13 @@ export default function Home() {
       </section>
 
       {/* ABOUT (SOBREPOSTO) */}
-      <section id="about" className="relative -mt-40 z-20 pb-24">
+      <section id="about" className="scroll-mt-32 relative -mt-40 z-20 pb-24 min-h-screen">
         <div
-          className="mx-auto max-w-7xl px-10 py-20
-  rounded-none sm:rounded-2xl
-  grid md:grid-cols-2 gap-16 items-center"
+          className="
+      mx-auto max-w-7xl px-10 py-20
+      rounded-none sm:rounded-2xl
+      grid md:grid-cols-2 gap-16 items-center
+    "
           style={{
             backgroundImage: "url('/images/textures/noisy-texture-white.png')",
             backgroundSize: "auto",
@@ -102,33 +105,64 @@ export default function Home() {
               <h2 className="text-3xl font-bold">Palmar Construções</h2>
             </div>
 
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground max-w-xl">
               Fundada em 1978, a Palmar Construções vem conquistando seu espaço
               no mercado imobiliário sergipano. Atualmente atua na implantação
               de loteamentos e na administração de aluguéis de imóveis próprios.
             </p>
+          </div>
+        </div>
 
-            {/* BADGES */}
-            <div className="flex gap-3 flex-wrap">
-              <Badge variant="secondary" className="flex items-center gap-1">
-                <IoCheckmarkOutline />
-                Integridade
-              </Badge>
+        {/* BADGES CENTRALIZADOS ABAIXO DA SECTION */}
+        <div className="mt-24 flex justify-center px-6">
+          <div className="flex gap-3 flex-wrap justify-center">
+            <Badge
+              variant="secondary"
+              className="
+          flex items-center gap-2
+          px-4 py-2
+          bg-white/70 backdrop-blur
+          border border-black/5
+          shadow-sm
+          transition-all duration-300
+          hover:scale-105 hover:shadow-md
+        "
+            >
+              <IoCheckmarkOutline />
+              Integridade
+            </Badge>
 
-              <Badge variant="secondary" className="flex items-center gap-1">
-                <IoCheckmarkOutline />
-                Organização
-              </Badge>
+            <Badge
+              variant="secondary"
+              className="
+          flex items-center gap-2
+          px-4 py-2
+          bg-white/70 backdrop-blur
+          border border-black/5
+          shadow-sm
+          transition-all duration-300
+          hover:scale-105 hover:shadow-md
+        "
+            >
+              <IoCheckmarkOutline />
+              Organização
+            </Badge>
 
-              <Badge variant="secondary" className="flex items-center gap-1">
-                <IoCheckmarkOutline />
-                Seriedade
-              </Badge>
-            </div>
-
-            <Button asChild>
-              <Link href="#service">Nossos serviços</Link>
-            </Button>
+            <Badge
+              variant="secondary"
+              className="
+          flex items-center gap-2
+          px-4 py-2
+          bg-white/70 backdrop-blur
+          border border-black/5
+          shadow-sm
+          transition-all duration-300
+          hover:scale-105 hover:shadow-md
+        "
+            >
+              <IoCheckmarkOutline />
+              Seriedade
+            </Badge>
           </div>
         </div>
       </section>
@@ -136,125 +170,109 @@ export default function Home() {
       {/* SERVICES */}
       <section
         id="services"
-        className="relative py-24"
+        className=" relative py-28 min-h-screen"
         style={{
           backgroundImage: "url('/images/textures/noisy-texture.png')",
           backgroundSize: "auto",
         }}
       >
-        {/* BACKGROUND EFFECTS */}
-        <div className="absolute inset-0 bg-linear-to-tr from-amber-300/30 via-transparent to-transparent opacity-30 pointer-events-none"></div>
-        <div className="absolute inset-0 bg-linear-to-bl from-amber-300/10 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+        {/* BACKGROUND */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-amber-300/10 via-transparent to-transparent opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-bl from-amber-300/10 via-transparent to-transparent opacity-30" />
 
-        <div className="mx-auto max-w-7xl px-6 flex flex-col gap-12">
+        <div className="mx-auto max-w-5xl px-6 flex flex-col gap-16">
           {/* TITLE */}
           <div className="text-center">
-            <h2 className="text-3xl font-bold">Serviços</h2>
+            <h2 className="text-4xl font-semibold tracking-tight text-white">
+              Serviços
+            </h2>
+            <p className="text-zinc-400 mt-3 text-sm">
+              Soluções completas para compra, venda e locação
+            </p>
           </div>
 
           {/* CARDS */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* ALUGUEL */}
-            <Card
-              className="card-float relative overflow-hidden
-        bg-white/10 backdrop-blur-xl
-        border border-white/20
-        shadow-[0_25px_60px_rgba(0,0,0,0.25)]
-        transition-all duration-500
-        hover:-translate-y-2
-        hover:shadow-[0_35px_80px_rgba(0,0,0,0.35)]"
-            >
-              <div className="absolute inset-0 bg-linear-to-br from-white/30 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+          <div className="grid md:grid-cols-2 gap-10">
+            {[
+              {
+                title: "Aluguel",
+                image: "/images/cards/rent.png",
+                desc: "Gestão completa de imóveis para locação com segurança e praticidade.",
+              },
+              {
+                title: "Venda",
+                image: "/images/cards/sell.png",
+                desc: "Intermediação de vendas com valorização e estratégias eficientes.",
+              },
+            ].map((item, i) => (
+              <Card
+                key={i}
+                className="
+            group relative overflow-hidden
+            rounded-3xl
+            bg-zinc-900/80 backdrop-blur-xl
+            border border-white/5
+            p-10
 
-              <CardHeader className="flex flex-col items-center text-center relative">
-                <Image
-                  src="/images/cards/rent.png"
-                  alt="Ícone aluguel"
-                  width={180}
-                  height={180}
-                  className="mb-4"
+            transition-all duration-500 ease-out
+
+            hover:-translate-y-5
+            hover:shadow-[0_50px_150px_rgba(0,0,0,0.75)]
+          "
+              >
+                {/* GLOW SUAVE (ATRÁS) */}
+                <div
+                  className="
+              absolute -inset-8
+              opacity-0
+              group-hover:opacity-100
+              transition duration-700
+              blur-3xl
+              bg-zinc-600/10
+            "
                 />
 
-                <CardTitle className="text-xl">Aluguel</CardTitle>
-              </CardHeader>
+                {/* GRADIENT INTERNO */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-white/5 via-transparent to-transparent" />
 
-              <CardContent className="text-center text-muted-foreground relative flex flex-col items-center gap-6">
-                <p>Encontre o imóvel ideal para locação.</p>
+                {/* CONTEÚDO */}
+                <div className="relative flex flex-col items-center text-center gap-6">
+                  {/* IMAGEM */}
+                  <div className="transition duration-500 group-hover:scale-110">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={130}
+                      height={130}
+                    />
+                  </div>
 
-                {/* TAGS */}
-                <div className="flex gap-3 flex-wrap justify-center">
-                  <span className="px-4 py-1 text-sm rounded-full bg-white/30 backdrop-blur border border-white/30">
-                    Residencial
-                  </span>
+                  {/* TITULO */}
+                  <h3 className="text-xl text-white font-medium">
+                    {item.title}
+                  </h3>
 
-                  <span className="px-4 py-1 text-sm rounded-full bg-white/30 backdrop-blur border border-white/30">
-                    Comercial
-                  </span>
+                  {/* DESCRIÇÃO */}
+                  <p className="text-sm text-zinc-400 leading-relaxed max-w-sm">
+                    {item.desc}
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* VENDA */}
-            <Card
-              className="card-float relative overflow-hidden
-        bg-white/10 backdrop-blur-xl
-        border border-white/20
-        shadow-[0_25px_60px_rgba(0,0,0,0.25)]
-        transition-all duration-500
-        hover:-translate-y-2
-        hover:shadow-[0_35px_80px_rgba(0,0,0,0.35)]"
-            >
-              <div className="absolute inset-0 bg-linear-to-br from-white/30 via-transparent to-transparent opacity-40 pointer-events-none"></div>
-
-              <CardHeader className="flex flex-col items-center text-center relative">
-                <Image
-                  src="/images/cards/sell.png"
-                  alt="Ícone venda"
-                  width={180}
-                  height={180}
-                  className="mb-4"
-                />
-
-                <CardTitle className="text-xl">Venda</CardTitle>
-              </CardHeader>
-
-              <CardContent className="text-center text-muted-foreground relative flex flex-col items-center gap-6">
-                <p>Adquira seu imóvel com segurança.</p>
-
-                {/* TAGS */}
-                <div className="flex gap-3 flex-wrap justify-center">
-                  <span className="px-4 py-1 text-sm rounded-full bg-white/30 backdrop-blur border border-white/30">
-                    Casas
-                  </span>
-
-                  <span className="px-4 py-1 text-sm rounded-full bg-white/30 backdrop-blur border border-white/30">
-                    Lotes
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* PROPERTIES */}
-
       <section id="properties" className="py-28 relative -mt-24">
-        <div className="absolute inset-0 bg-linear-to-br from-amber-300/20 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-zinc-900/20 via-transparent to-transparent opacity-40 pointer-events-none"></div>
         <div className="absolute inset-0 bg-linear-to-bl from-zinc-900/50 via-transparent to-transparent opacity-40 pointer-events-none"></div>
-        
-        
+
         <div className="mx-auto max-w-7xl px-6 flex flex-col gap-14">
-          
           {/* HEADER */}
 
           <div className="grid md:grid-cols-2 gap-10 items-start">
-
             <div className="flex flex-col gap-4">
-              <span className="text-sm flex items-center gap-2">
-                ● Featured Properties
-              </span>
-
               <h2 className="text-4xl md:text-5xl font-bold leading-tight">
                 Unlock Your Ideal <br />
                 Living Space
@@ -276,7 +294,7 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <div className="relative h-[260px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/properties/property-1.jpg"
+                  src="/images/hero/maquete.png"
                   alt="Silver Birch Villa"
                   fill
                   className="object-cover"
@@ -303,7 +321,7 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <div className="relative h-[260px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/properties/property-2.jpg"
+                  src="/images/hero/maquete.png"
                   alt="Maple Grove Cottage"
                   fill
                   className="object-cover"
@@ -330,7 +348,7 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <div className="relative h-[260px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/properties/property-3.jpg"
+                  src="/images/hero/maquete.png"
                   alt="Cedar Hill Estate"
                   fill
                   className="object-cover"

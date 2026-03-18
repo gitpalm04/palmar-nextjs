@@ -1,22 +1,13 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import Script from "next/script"
-
 import "./globals.css"
 
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import CTA from "@/components/CTA"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
+import { kanit } from "@/lib/fonts"
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.palmarconstrucoes.com.br"),
@@ -90,8 +81,7 @@ export default function RootLayout({
 
       <body
         className={`
-          ${geistSans.variable}
-          ${geistMono.variable}
+          ${kanit.variable}
           antialiased
           min-h-screen
           flex
@@ -118,7 +108,7 @@ export default function RootLayout({
 
         <Header />
 
-        <main className="flex-1">
+        <main className="flex-1 pt-32">
           {children}
         </main>
 
