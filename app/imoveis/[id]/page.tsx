@@ -29,7 +29,7 @@ export default async function ImovelPage({
       {/* GALERIA */}
 
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="relative w-full h-[450px]">
+        <div className="relative w-full h-112.5">
           <Image
             src={imovel.imagem_principal}
             alt={imovel.titulo}

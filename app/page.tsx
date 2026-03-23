@@ -1,11 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
-
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 import { IoCheckmarkOutline, IoHome } from "react-icons/io5";
+import CTA from "@/components/CTA";
 
 export default function Home() {
   return (
@@ -17,7 +15,7 @@ export default function Home() {
       }}
     >
       {/* HERO */}
-      <section id="home" className="relative overflow-hidden">
+      <section id="home" className=" relative overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-bl from-zinc-900/50 via-transparent to-transparent opacity-40 pointer-events-none"></div>
 
         <div className="absolute inset-0 bg-linear-to-tl from-zinc-800/30 via-transparent to-transparent opacity-40 pointer-events-none"></div>
@@ -67,7 +65,7 @@ export default function Home() {
               src="/images/hero/home_hero.jpg"
               alt="Modern House"
               fill
-              className="object-contain mix-blend-multiply mask-b-from-fuchsia-50 "
+              className="object-contain mix-blend-multiply mask-b-from-fuchsia-50"
               priority
             />
           </div>
@@ -75,7 +73,10 @@ export default function Home() {
       </section>
 
       {/* ABOUT (SOBREPOSTO) */}
-      <section id="about" className="scroll-mt-32 relative -mt-40 z-20 pb-24 min-h-screen">
+      <section
+        id="about"
+        className="scroll-mt-32 relative -mt-40 z-20 pb-24 min-h-screen"
+      >
         <div
           className="
       mx-auto max-w-7xl px-10 py-20
@@ -170,7 +171,7 @@ export default function Home() {
       {/* SERVICES */}
       <section
         id="services"
-        className=" relative py-28 min-h-screen"
+        className=" relative py-32 min-h-screen"
         style={{
           backgroundImage: "url('/images/textures/noisy-texture.png')",
           backgroundSize: "auto",
@@ -183,7 +184,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl px-6 flex flex-col gap-16">
           {/* TITLE */}
           <div className="text-center">
-            <h2 className="text-4xl font-semibold tracking-tight text-white">
+            <h2 className="text-4xl font-semibold tracking-tight text-zinc-50">
               Serviços
             </h2>
             <p className="text-zinc-400 mt-3 text-sm">
@@ -192,16 +193,16 @@ export default function Home() {
           </div>
 
           {/* CARDS */}
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-14 pt-10">
             {[
               {
                 title: "Aluguel",
-                image: "/images/cards/rent.png",
+                image: "/images/cards/card-rent-removebg-preview.png",
                 desc: "Gestão completa de imóveis para locação com segurança e praticidade.",
               },
               {
                 title: "Venda",
-                image: "/images/cards/sell.png",
+                image: "/images/cards/card-sell-removebg-preview.png",
                 desc: "Intermediação de vendas com valorização e estratégias eficientes.",
               },
             ].map((item, i) => (
@@ -212,7 +213,7 @@ export default function Home() {
             rounded-3xl
             bg-zinc-900/80 backdrop-blur-xl
             border border-white/5
-            p-10
+            p-12
 
             transition-all duration-500 ease-out
 
@@ -242,8 +243,8 @@ export default function Home() {
                     <Image
                       src={item.image}
                       alt={item.title}
-                      width={130}
-                      height={130}
+                      width={200}
+                      height={200}
                     />
                   </div>
 
@@ -292,7 +293,7 @@ export default function Home() {
             {/* CARD 1 */}
 
             <div className="flex flex-col gap-4">
-              <div className="relative h-[260px] rounded-2xl overflow-hidden">
+              <div className="relative h-65 rounded-2xl overflow-hidden">
                 <Image
                   src="/images/hero/maquete.png"
                   alt="Silver Birch Villa"
@@ -372,6 +373,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <CTA />
     </main>
   );
 }

@@ -108,11 +108,9 @@ export default function RootLayout({
 
         <Header />
 
-        <main className="flex-1 pt-32">
+        <main className="flex-1">
           {children}
         </main>
-
-        <CTA />
 
         <Footer />
 

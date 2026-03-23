@@ -1,24 +1,45 @@
-import { NextResponse } from "next/server"
-import db from "@/lib/db"
+import { db } from "@/lib/db";
+import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
 
-  const { searchParams } = new URL(req.url)
-  const id = searchParams.get("id")
+    const {
+      titulo,
+      descricao,
+      preco,
+      cidade,
+      estado,
+      quartos,
+      suites,
+      garagem,
+      tamanho,
+      imagem_principal,
+      imagens,
+    } = body;
 
-  if (id) {
+    await db.query(
+      `INSERT INTO imoveis 
+      (titulo, descricao, preco, cidade, estado, quartos, suites, garagem, tamanho, imagem_principal, imagens)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        titulo,
+        descricao,
+        preco,
+        cidade,
+        estado,
+        quartos,
+        suites,
+        garagem,
+        tamanho,
+        imagem_principal,
+        JSON.stringify(imagens),
+      ]
+    );
 
-    const [rows]: any = await db.query(
-      "SELECT * FROM imoveis WHERE id=?",
-      [id]
-    )
-
-    return NextResponse.json(rows[0])
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    return NextResponse.json({ error: "Erro ao salvar" }, { status: 500 });
   }
-
-  const [rows]: any = await db.query(
-    "SELECT * FROM imoveis ORDER BY id DESC"
-  )
-
-  return NextResponse.json(rows)
 }

@@ -1,3 +1,5 @@
+import { IoCallOutline, IoLocationOutline, IoMailOutline } from "react-icons/io5";
+
 export default function ContatoPage() {
   return (
     <main className="min-h-screen" style={{
@@ -6,28 +8,17 @@ export default function ContatoPage() {
       }}>
 
       {/* HERO */}
-      <section className="relative h-[300px] flex items-center px-8">
-
-        {/* IMAGEM */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/images/hero-building.jpg')",
-          }}
-        />
+      <section className="relative h-60 flex items-center px-8" style={{
+        backgroundImage: "url('/images/textures/noisy-texture.png')",
+        backgroundSize: "auto",
+      }}>
 
         {/* OVERLAY */}
         <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
 
-        {/* TEXTO */}
-        <div className="relative z-10 text-white">
-          <h1 className="text-4xl font-semibold">Buscar imóveis</h1>
-          <p className="text-sm opacity-80 mt-2">Aracaju</p>
-        </div>
-
       </section>
 
-      <div className="max-w-7xl mx-auto px-6 mt-10 grid lg:grid-cols-[1.3fr_1fr] gap-8">
+      <div className="max-w-7xl mx-auto px-6 mt-10 grid lg:grid-cols-[1.3fr_1fr] gap-8 p-14">
 
         {/* LEFT */}
         <div className="flex flex-col gap-6">
@@ -49,17 +40,17 @@ export default function ContatoPage() {
           <div className="flex flex-col gap-4 mt-6 text-zinc-600">
 
             <div className="flex items-center gap-3">
-              <span>✉</span>
+              <IoMailOutline size={18} />
               contato@palmarconstrucoes.com
             </div>
 
             <div className="flex items-center gap-3">
-              <span>📞</span>
+              <IoCallOutline size={18} />
               (79) 99999-9999
             </div>
 
             <div className="flex items-center gap-3">
-              <span>📍</span>
+              <IoLocationOutline size={18} />
               Aracaju, Sergipe - Brasil
             </div>
 
@@ -97,9 +88,8 @@ export default function ContatoPage() {
             </label>
 
             <select className="bg-zinc-100 rounded-lg px-4 py-3 outline-none">
-              <option>Compra de imóvel</option>
               <option>Aluguel</option>
-              <option>Informações</option>
+              <option>Compra</option>
             </select>
           </div>
 
