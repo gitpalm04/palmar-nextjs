@@ -5,7 +5,7 @@ import { jwtVerify } from 'jose'
 const secretKey = process.env.AUTH_SECRET || 'fallback-secret-key-change-in-production'
 const key = new TextEncoder().encode(secretKey)
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Rotas protegidas do admin
