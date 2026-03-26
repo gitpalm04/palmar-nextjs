@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { FaBath, FaBed, FaExpand } from "react-icons/fa";
+import { ImoveisList } from "@/components/imoveis-list";
+
 
 export default function ImoveisPage() {
   return (
@@ -10,86 +10,23 @@ export default function ImoveisPage() {
         backgroundSize: "auto",
       }}
     >
-      {/* HERO */}
-      <section
-        className="relative h-60 flex items-center px-8"
-        style={{
-          backgroundImage: "url('/images/textures/noisy-texture.png')",
-          backgroundSize: "auto",
-        }}
-      >
-        {/* OVERLAY */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+      {/* Hero Section */}
+      <section className="bg-primary py-16 md:py-24">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 text-balance">
+            Encontre seu imóvel ideal
+          </h1>
+          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto text-pretty">
+            Explore nossa seleção exclusiva de imóveis de alto padrão. 
+            Apartamentos, casas, terrenos e muito mais esperando por você.
+          </p>
+        </div>
       </section>
 
-      {/* SEARCH BAR */}
-      <div className="relative z-20 -mt-10 px-6 max-w-6xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl p-4 flex flex-wrap gap-3 items-center">
-          <input
-            placeholder="Digite endereço, cidade ou CEP"
-            className="flex-1 px-4 py-2 bg-zinc-100 rounded-xl outline-none text-sm"
-          />
-
-          <select className="px-3 py-2 bg-zinc-100 rounded-xl text-sm">
-            <option>Aluguel</option>
-            <option>Venda</option>
-          </select>
-
-          <button className="bg-black text-white px-4 py-2 rounded-xl hover:scale-105 transition">
-            Buscar
-          </button>
-        </div>
-      </div>
-
-      {/* CONTENT */}
-      <section className="max-w-7xl mx-auto px-6 mt-10 grid lg:grid-cols-[1.3fr_1fr] gap-8 p-14">
-        {/* LISTA */}
-        <div className="flex flex-col gap-6">
-          <h2 className="text-xl font-semibold">Melhores opções</h2>
-
-          {[1, 2, 3].map((item) => (
-            <div
-              key={item}
-              className="flex gap-4 bg-white rounded-2xl p-4 shadow hover:shadow-lg transition"
-            >
-              {/* IMAGEM */}
-              <div className="relative w-40 h-28">
-                <Image
-                  src="/images/hero/maquete.png"
-                  alt="Imóvel"
-                  fill
-                  className="object-cover rounded-xl"
-                />
-              </div>
-
-              {/* INFO */}
-              <div className="flex flex-col justify-between flex-1">
-                <div>
-                  <h3 className="font-semibold">Apartamento moderno</h3>
-                  <p className="text-sm text-zinc-500">Aracaju, SE</p>
-                </div>
-
-                <div className="flex gap-3 text-xs text-zinc-600">
-                  <FaBath /> <span> 2</span>
-                  <FaBed /> <span>1</span>
-                  <FaExpand />
-                  <span>60m²</span>
-                </div>
-              </div>
-
-              {/* PREÇO */}
-              <div className="flex flex-col justify-between items-end">
-                <span className="font-semibold">R$ 350.000</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* MAPA */}
-        <div className="sticky top-6 h-125 bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="w-full h-full flex items-center justify-center text-zinc-500">
-            Mapa
-          </div>
+      {/* Lista de Imóveis */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4">
+          <ImoveisList />
         </div>
       </section>
     </main>

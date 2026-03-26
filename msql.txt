@@ -1,0 +1,126 @@
+-- Script de criação das tabelas para o sistema de imóveis
+-- Execute este script no seu banco MySQL
+
+-- Tabela de usuários (admin/editor)
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  role ENUM('admin', 'editor') DEFAULT 'editor',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela de imóveis
+CREATE TABLE IF NOT EXISTS imoveis (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  descricao TEXT,
+  tipo ENUM('apartamento', 'casa', 'terreno', 'comercial', 'cobertura') NOT NULL,
+  status ENUM('disponivel', 'vendido', 'reservado', 'em_construcao') DEFAULT 'disponivel',
+  preco DECIMAL(15, 2),
+  area_total DECIMAL(10, 2),
+  area_construida DECIMAL(10, 2),
+  quartos INT DEFAULT 0,
+  suites INT DEFAULT 0,
+  banheiros INT DEFAULT 0,
+  vagas INT DEFAULT 0,
+  endereco VARCHAR(255),
+  bairro VARCHAR(100),
+  cidade VARCHAR(100),
+  estado VARCHAR(2),
+  cep VARCHAR(10),
+  latitude DECIMAL(10, 8),
+  longitude DECIMAL(11, 8),
+  destaque BOOLEAN DEFAULT FALSE,
+  ativo BOOLEAN DEFAULT TRUE,
+  created_by INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
+);
+
+-- Tabela de imagens dos imóveis
+CREATE TABLE IF NOT EXISTS imovel_imagens (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  imovel_id INT NOT NULL,
+  url VARCHAR(500) NOT NULL,
+  alt VARCHAR(255),
+  ordem INT DEFAULT 0,
+  principal BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (imovel_id) REFERENCES imoveis(id) ON DELETE CASCADE
+);
+
+-- Tabela de características dos imóveis
+CREATE TABLE IF NOT EXISTS imovel_caracteristicas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  imovel_id INT NOT NULL,
+  caracteristica VARCHAR(100) NOT NULL,
+  FOREIGN KEY (imovel_id) REFERENCES imoveis(id) ON DELETE CASCADE
+);
+
+-- Índices para performance
+CREATE INDEX idx_imoveis_tipo ON imoveis(tipo);
+CREATE INDEX idx_imoveis_status ON imoveis(status);
+CREATE INDEX idx_imoveis_cidade ON imoveis(cidade);
+CREATE INDEX idx_imoveis_ativo ON imoveis(ativo);
+CREATE INDEX idx_imoveis_destaque ON imoveis(destaque);
+CREATE INDEX idx_imovel_imagens_imovel ON imovel_imagens(imovel_id);
+CREATE INDEX idx_imovel_caracteristicas_imovel ON imovel_caracteristicas(imovel_id);
+
+
+
+
+
+-------------------SEED DB------------------
+-- Script de dados iniciais
+-- A senha padrão para o admin é: admin123 (hash bcrypt)
+
+-- Inserir usuário admin padrão
+INSERT INTO users (email, password_hash, name, role) VALUES 
+('admin@construtora.com', '$2a$10$K8HfJQZ0Qz5b5h5h5h5h5uZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZ', 'Administrador', 'admin');
+
+-- Inserir alguns imóveis de exemplo
+INSERT INTO imoveis (titulo, slug, descricao, tipo, status, preco, area_total, area_construida, quartos, suites, banheiros, vagas, endereco, bairro, cidade, estado, destaque, ativo, created_by) VALUES
+('Apartamento Vista Mar', 'apartamento-vista-mar', 'Lindo apartamento com vista panorâmica para o mar. Acabamento de alto padrão, varanda gourmet e lazer completo.', 'apartamento', 'disponivel', 850000.00, 120.00, 95.00, 3, 1, 2, 2, 'Av. Beira Mar, 1500', 'Centro', 'Florianópolis', 'SC', TRUE, TRUE, 1),
+('Casa em Condomínio', 'casa-em-condominio', 'Casa espaçosa em condomínio fechado com segurança 24h. Amplo quintal, churrasqueira e piscina privativa.', 'casa', 'disponivel', 1200000.00, 450.00, 280.00, 4, 2, 3, 3, 'Rua das Palmeiras, 200', 'Jurerê', 'Florianópolis', 'SC', TRUE, TRUE, 1),
+('Terreno Comercial', 'terreno-comercial', 'Excelente terreno em localização estratégica. Ideal para construção comercial ou residencial de alto padrão.', 'terreno', 'disponivel', 650000.00, 500.00, NULL, 0, 0, 0, 0, 'Rod. SC-401, km 12', 'Santo Antônio', 'Florianópolis', 'SC', FALSE, TRUE, 1),
+('Cobertura Duplex', 'cobertura-duplex', 'Cobertura duplex com terraço privativo e vista deslumbrante. Piscina, sauna e churrasqueira no rooftop.', 'cobertura', 'reservado', 2500000.00, 300.00, 250.00, 4, 4, 5, 4, 'Av. Atlântica, 500', 'Copacabana', 'Rio de Janeiro', 'RJ', TRUE, TRUE, 1),
+('Sala Comercial', 'sala-comercial', 'Sala comercial moderna em edifício empresarial. Ar condicionado central, piso elevado e infraestrutura completa.', 'comercial', 'disponivel', 450000.00, 80.00, 80.00, 0, 0, 2, 1, 'Av. Paulista, 1000', 'Bela Vista', 'São Paulo', 'SP', FALSE, TRUE, 1);
+
+-- Inserir imagens para os imóveis
+INSERT INTO imovel_imagens (imovel_id, url, alt, ordem, principal) VALUES
+(1, 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800', 'Vista frontal do apartamento', 1, TRUE),
+(1, 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800', 'Sala de estar', 2, FALSE),
+(1, 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800', 'Quarto principal', 3, FALSE),
+(2, 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800', 'Fachada da casa', 1, TRUE),
+(2, 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800', 'Área externa', 2, FALSE),
+(2, 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800', 'Piscina', 3, FALSE),
+(3, 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800', 'Vista do terreno', 1, TRUE),
+(4, 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800', 'Cobertura vista frontal', 1, TRUE),
+(4, 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800', 'Terraço', 2, FALSE),
+(5, 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800', 'Sala comercial', 1, TRUE);
+
+-- Inserir características
+INSERT INTO imovel_caracteristicas (imovel_id, caracteristica) VALUES
+(1, 'Varanda Gourmet'),
+(1, 'Ar Condicionado'),
+(1, 'Vista Mar'),
+(1, 'Piso Porcelanato'),
+(2, 'Piscina'),
+(2, 'Churrasqueira'),
+(2, 'Segurança 24h'),
+(2, 'Jardim'),
+(2, 'Quintal'),
+(3, 'Documentação OK'),
+(3, 'Plano'),
+(4, 'Piscina Privativa'),
+(4, 'Sauna'),
+(4, 'Terraço'),
+(4, 'Vista Panorâmica'),
+(5, 'Ar Condicionado Central'),
+(5, 'Piso Elevado'),
+(5, 'Recepção');
