@@ -11,7 +11,7 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-     <main className="flex-1">
+     <main className="flex-1 ">
           {children}
         </main>
   )

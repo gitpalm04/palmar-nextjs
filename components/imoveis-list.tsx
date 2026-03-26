@@ -4,18 +4,16 @@ import { useState, useEffect, useCallback } from 'react'
 import { ImovelCard } from './imovel-card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
-import { Empty } from '@/components/ui/empty'
 import { Search, Building2, Home, TreePine, Store, Building } from 'lucide-react'
 import { ImovelCompleto } from '@/lib/db'
 
 const tipos = [
   { value: '', label: 'Todos', icon: Building2 },
-  { value: 'apartamento', label: 'Apartamentos', icon: Building },
+  // { value: 'apartamento', label: 'Apartamentos', icon: Building },
   { value: 'casa', label: 'Casas', icon: Home },
   { value: 'terreno', label: 'Terrenos', icon: TreePine },
   { value: 'comercial', label: 'Comercial', icon: Store },
-  { value: 'cobertura', label: 'Coberturas', icon: Building },
+  // { value: 'cobertura', label: 'Coberturas', icon: Building },
 ]
 
 interface ImoveisData {
@@ -36,6 +34,7 @@ export function ImoveisList() {
   const fetchImoveis = useCallback(async () => {
     setLoading(true)
     setError(null)
+
     try {
       const params = new URLSearchParams()
       if (busca) params.set('busca', busca)
@@ -45,7 +44,7 @@ export function ImoveisList() {
 
       const response = await fetch(`/api/imoveis?${params}`)
       const result = await response.json()
-      
+
       if (!response.ok) {
         setError(result.error || 'Erro ao carregar imóveis')
         setData({ imoveis: [], total: 0, page: 1, totalPages: 1 })
@@ -54,7 +53,7 @@ export function ImoveisList() {
       }
     } catch (err) {
       console.error('Erro ao buscar imóveis:', err)
-      setError('Erro de conexão. Verifique a configuração do banco de dados.')
+      setError('Erro de conexão. Verifique o servidor.')
       setData({ imoveis: [], total: 0, page: 1, totalPages: 1 })
     } finally {
       setLoading(false)
@@ -78,9 +77,10 @@ export function ImoveisList() {
 
   return (
     <div className="space-y-8">
-      {/* Busca e Filtros */}
+      
+      {/* BUSCA */}
       <div className="space-y-4">
-        <form onSubmit={handleSearch} className="flex gap-2 max-w-xl mx-auto">
+        {/* <form onSubmit={handleSearch} className="flex gap-2 max-w-xl mx-auto">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
@@ -88,13 +88,13 @@ export function ImoveisList() {
               placeholder="Buscar por título, cidade ou bairro..."
               value={busca}
               onChange={(e) => setBusca(e.target.value)}
-              className="pl-10"
+              className="pl-10 shadow-md border-none"
             />
           </div>
           <Button type="submit">Buscar</Button>
-        </form>
+        </form> */}
 
-        {/* Filtros por Tipo */}
+        {/* FILTROS */}
         <div className="flex flex-wrap justify-center gap-2">
           {tipos.map(({ value, label, icon: Icon }) => (
             <Button
@@ -102,7 +102,7 @@ export function ImoveisList() {
               variant={tipo === value ? 'default' : 'outline'}
               size="sm"
               onClick={() => handleTipoChange(value)}
-              className="gap-2"
+              className="gap-2 shadow-md border-none"
             >
               <Icon className="h-4 w-4" />
               {label}
@@ -111,46 +111,47 @@ export function ImoveisList() {
         </div>
       </div>
 
-      {/* Lista de Imóveis */}
+      {/* LOADING */}
       {loading ? (
         <div className="flex justify-center py-12">
-          <Spinner className="h-8 w-8" />
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
+
+      /* ERRO */
       ) : error ? (
-        <Empty className="py-12">
-          <Empty.Icon>
-            <Building2 className="h-10 w-10" />
-          </Empty.Icon>
-          <Empty.Title>Erro ao carregar imóveis</Empty.Title>
-          <Empty.Description>
-            {error}
-          </Empty.Description>
+        <div className="text-center py-12">
+          <Building2 className="h-10 w-10 mx-auto mb-4 text-muted-foreground" />
+          <h3 className="font-semibold mb-2">Erro ao carregar imóveis</h3>
+          <p className="text-muted-foreground">{error}</p>
           <Button onClick={fetchImoveis} variant="outline" className="mt-4">
             Tentar novamente
           </Button>
-        </Empty>
+        </div>
+
+      /* VAZIO */
       ) : data?.imoveis?.length === 0 ? (
-        <Empty className="py-12">
-          <Empty.Icon>
-            <Building2 className="h-10 w-10" />
-          </Empty.Icon>
-          <Empty.Title>Nenhum imóvel encontrado</Empty.Title>
-          <Empty.Description>
-            Tente ajustar os filtros ou a busca para encontrar o imóvel ideal.
-          </Empty.Description>
-        </Empty>
+        <div className="text-center py-12">
+          <Building2 className="h-10 w-10 mx-auto mb-4 text-muted-foreground" />
+          <h3 className="font-semibold mb-2">Nenhum imóvel encontrado</h3>
+          <p className="text-muted-foreground">
+            Tente ajustar os filtros ou a busca.
+          </p>
+        </div>
+
+      /* LISTA */
       ) : (
         <>
           <p className="text-center text-muted-foreground">
             {data?.total} {data?.total === 1 ? 'imóvel encontrado' : 'imóveis encontrados'}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {data?.imoveis?.map((imovel) => (
               <ImovelCard key={imovel.id} imovel={imovel} />
             ))}
           </div>
 
-          {/* Paginação */}
+          {/* PAGINAÇÃO */}
           {data && data.totalPages > 1 && (
             <div className="flex justify-center gap-2 pt-8">
               <Button
@@ -160,9 +161,11 @@ export function ImoveisList() {
               >
                 Anterior
               </Button>
+
               <span className="flex items-center px-4 text-sm text-muted-foreground">
                 Página {page} de {data.totalPages}
               </span>
+
               <Button
                 variant="outline"
                 disabled={page === data.totalPages}

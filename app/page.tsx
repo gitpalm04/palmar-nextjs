@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 
 import { IoCheckmarkOutline, IoHome } from "react-icons/io5";
 import CTA from "@/components/CTA";
+import { ImoveisList } from "@/components/imoveis-list";
+
 
 export default function Home() {
   return (
@@ -60,7 +62,7 @@ export default function Home() {
           </div>
 
           {/* HOUSE IMAGE */}
-          <div className="relative w-full h-[400px] md:h-[640px] mt-10">
+          <div className="relative w-full h-100 md:h-160 mt-10">
             <Image
               src="/images/hero/home_hero.jpg"
               alt="Modern House"
@@ -178,8 +180,8 @@ export default function Home() {
         }}
       >
         {/* BACKGROUND */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-amber-300/10 via-transparent to-transparent opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-bl from-amber-300/10 via-transparent to-transparent opacity-30" />
+        <div className="absolute inset-0 bg-linear-to-tr from-amber-300/10 via-transparent to-transparent opacity-40" />
+        <div className="absolute inset-0 bg-linear-to-bl from-amber-300/10 via-transparent to-transparent opacity-30" />
 
         <div className="mx-auto max-w-5xl px-6 flex flex-col gap-16">
           {/* TITLE */}
@@ -234,7 +236,7 @@ export default function Home() {
                 />
 
                 {/* GRADIENT INTERNO */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-gradient-to-br from-white/5 via-transparent to-transparent" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-linear-to-br from-white/5 via-transparent to-transparent" />
 
                 {/* CONTEÚDO */}
                 <div className="relative flex flex-col items-center text-center gap-6">
@@ -271,105 +273,20 @@ export default function Home() {
 
         <div className="mx-auto max-w-7xl px-6 flex flex-col gap-14">
           {/* HEADER */}
-
           <div className="grid md:grid-cols-2 gap-10 items-start">
             <div className="flex flex-col gap-4">
               <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                Unlock Your Ideal <br />
-                Living Space
+                Encontre seu imóvel ideal
               </h2>
             </div>
 
             <p className="text-muted-foreground max-w-md">
-              Step into a world of unparalleled luxury with our exclusive
-              portfolio of prime real estate. We meticulously select only the
-              finest investment-grade properties and luxury residences.
+              Explore nossa seleção exclusiva de imóveis. Casas, apartamentos,
+              terrenos e muito mais esperando por você.
             </p>
           </div>
-
-          {/* PROPERTY CARDS */}
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* CARD 1 */}
-
-            <div className="flex flex-col gap-4">
-              <div className="relative h-65 rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/hero/maquete.png"
-                  alt="Silver Birch Villa"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-semibold">Silver Birch Villa</h3>
-
-                <p className="text-sm text-muted-foreground">
-                  Birmingham, B1 2AA, United Kingdom
-                </p>
-
-                <p className="text-sm text-muted-foreground">
-                  4 beds · 3 bath · 1,200 sq.ft
-                </p>
-
-                <span className="text-xl font-bold">$850,000</span>
-              </div>
-            </div>
-
-            {/* CARD 2 */}
-
-            <div className="flex flex-col gap-4">
-              <div className="relative h-[260px] rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/hero/maquete.png"
-                  alt="Maple Grove Cottage"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-semibold">Maple Grove Cottage</h3>
-
-                <p className="text-sm text-muted-foreground">
-                  Liverpool, L1 3AB, United Kingdom
-                </p>
-
-                <p className="text-sm text-muted-foreground">
-                  2 beds · 1 bath · 750 sq.ft
-                </p>
-
-                <span className="text-xl font-bold">$500,000</span>
-              </div>
-            </div>
-
-            {/* CARD 3 */}
-
-            <div className="flex flex-col gap-4">
-              <div className="relative h-[260px] rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/hero/maquete.png"
-                  alt="Cedar Hill Estate"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-semibold">Cedar Hill Estate</h3>
-
-                <p className="text-sm text-muted-foreground">
-                  Edinburgh, EH1 1AA, Scotland
-                </p>
-
-                <p className="text-sm text-muted-foreground">
-                  5 beds · 4 bath · 2,000 sq.ft
-                </p>
-
-                <span className="text-xl font-bold">$1,200,000</span>
-              </div>
-            </div>
+          <div>
+            <ImoveisList />
           </div>
         </div>
       </section>

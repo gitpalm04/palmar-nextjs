@@ -28,9 +28,11 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
   const statusInfo = statusLabels[imovel.status] || statusLabels.disponivel
 
   return (
-    <Link href={`/imoveis/${imovel.slug}`}>
-      <Card className="overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-        <div className="relative aspect-4/3 overflow-hidden">
+    <Link href={`/imoveis/${imovel.slug}`} className="block h-full">
+      <Card className="h-full flex flex-col overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-neutral-100">
+
+        {/* IMAGEM */}
+        <div className="relative h-60 w-full overflow-hidden">
           {imovel.imagem_principal ? (
             <Image
               src={imovel.imagem_principal}
@@ -43,50 +45,65 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
               <span className="text-muted-foreground">Sem imagem</span>
             </div>
           )}
+
+          {/* BADGES */}
           <div className="absolute top-3 left-3 flex gap-2">
             <Badge variant={statusInfo.variant} className="text-xs">
               {statusInfo.label}
             </Badge>
+
             {imovel.destaque && (
-              <Badge variant="secondary" className="text-xs bg-accent text-accent-foreground">
-                Destaque
+              <Badge className="text-xs bg-accent text-accent-foreground">
+                {statusInfo.label}
               </Badge>
             )}
           </div>
         </div>
-        <CardContent className="p-4">
+
+        {/* CONTEÚDO */}
+        <CardContent className="p-4 flex flex-col flex-1">
+
+          {/* TIPO + BAIRRO */}
           <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
             {tipoLabels[imovel.tipo]} {imovel.bairro && `• ${imovel.bairro}`}
           </p>
-          <h3 className="font-semibold text-lg text-foreground leading-tight mb-2 line-clamp-1 text-balance">
+
+          {/* TÍTULO */}
+          <h3 className="font-semibold text-lg leading-tight mb-2 line-clamp-2">
             {imovel.titulo}
           </h3>
+
+          {/* LOCAL */}
           {imovel.cidade && (
-            <p className="text-sm text-muted-foreground mb-3">
+            <p className="text-sm text-muted-foreground mb-3 line-clamp-1">
               {imovel.cidade}, {imovel.estado}
             </p>
           )}
-          
+
+          {/* INFO */}
           {imovel.tipo !== 'terreno' && (
-            <div className="flex gap-4 text-sm text-muted-foreground mb-3">
+            <div className="flex gap-4 text-sm text-muted-foreground mb-3 flex-wrap">
               {imovel.quartos > 0 && (
                 <span className="flex items-center gap-1">
                   <Bed className="h-4 w-4" />
                   {imovel.quartos}
                 </span>
               )}
+
               {imovel.banheiros > 0 && (
                 <span className="flex items-center gap-1">
                   <Bath className="h-4 w-4" />
                   {imovel.banheiros}
                 </span>
               )}
+
               {imovel.vagas > 0 && (
                 <span className="flex items-center gap-1">
                   <Car className="h-4 w-4" />
                   {imovel.vagas}
                 </span>
               )}
+
               {imovel.area_construida && (
                 <span className="flex items-center gap-1">
                   <Maximize className="h-4 w-4" />
@@ -95,9 +112,10 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
               )}
             </div>
           )}
-          
+
+          {/* PREÇO (SEMPRE EMBAIXO) */}
           {imovel.preco && (
-            <p className="text-xl font-bold text-primary">
+            <p className="text-xl font-bold text-primary mt-auto">
               {new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
@@ -105,6 +123,7 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
               }).format(imovel.preco)}
             </p>
           )}
+
         </CardContent>
       </Card>
     </Link>

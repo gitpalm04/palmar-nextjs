@@ -38,7 +38,7 @@ export function ImovelGallery({ imagens, titulo }: ImovelGalleryProps) {
     <>
       <div className="space-y-4">
         {/* Imagem Principal */}
-        <div className="relative aspect-[16/9] rounded-lg overflow-hidden group">
+        <div className="relative aspect-video rounded-lg overflow-hidden group">
           <Image
             src={currentImage.url}
             alt={currentImage.alt || titulo}
