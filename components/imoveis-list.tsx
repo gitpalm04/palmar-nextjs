@@ -11,7 +11,7 @@ const tipos = [
   { value: '', label: 'Todos', icon: Building2 },
   // { value: 'apartamento', label: 'Apartamentos', icon: Building },
   { value: 'casa', label: 'Casas', icon: Home },
-  { value: 'terreno', label: 'Terrenos', icon: TreePine },
+  { value: 'terreno', label: 'Lotes', icon: TreePine },
   { value: 'comercial', label: 'Comercial', icon: Store },
   // { value: 'cobertura', label: 'Coberturas', icon: Building },
 ]
