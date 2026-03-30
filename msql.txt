@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS imoveis (
   slug VARCHAR(255) NOT NULL UNIQUE,
   descricao TEXT,
   tipo ENUM('apartamento', 'casa', 'terreno', 'comercial', 'cobertura') NOT NULL,
-  status ENUM('disponivel', 'vendido', 'reservado', 'em_construcao') DEFAULT 'disponivel',
+  status ENUM('aluguel', 'venda') DEFAULT 'aluguel',
   preco DECIMAL(15, 2),
   area_total DECIMAL(10, 2),
   area_construida DECIMAL(10, 2),

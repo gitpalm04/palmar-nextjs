@@ -25,10 +25,8 @@ export default pool;
 
 // Tipos do banco de dados
 export type StatusImovel =
-  | "disponivel"
-  | "vendido"
-  | "reservado"
-  | "em_construcao";
+  | "aluguel"
+  | "venda";
 
 export type TipoImovel =
   | "apartamento"

@@ -280,7 +280,9 @@ export default function Home() {
               </h2>
             </div>
 
+
             <p className="text-muted-foreground max-w-md">
+              
               Explore nossa seleção exclusiva de imóveis. Casas, apartamentos,
               terrenos e muito mais esperando por você.
             </p>

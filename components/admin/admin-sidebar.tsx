@@ -10,8 +10,10 @@ import {
   Home,
   LogOut,
   Plus,
-  Users
+  Users,
+  PackageOpen
 } from 'lucide-react'
+
 
 interface AdminSidebarProps {
   user: {
@@ -44,11 +46,10 @@ export function AdminSidebar({ user }: AdminSidebarProps) {
       <div className="p-6 border-b border-sidebar-border">
         <Link href="/admin" className="flex items-center gap-3">
           <div className="p-2 bg-sidebar-primary rounded-lg">
-            <Building2 className="h-6 w-6 text-sidebar-primary-foreground" />
+            <PackageOpen  className="h-6 w-6 text-sidebar-primary-foreground" />
           </div>
           <div>
-            <h1 className="font-semibold">Construtora</h1>
-            <p className="text-xs text-sidebar-foreground/70">Painel Admin</p>
+            <h1 className="font-semibold">Painel Admin</h1>
           </div>
         </Link>
       </div>
