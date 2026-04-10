@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { IoCheckmarkOutline, IoHome } from "react-icons/io5";
 import CTA from "@/components/CTA";
-import { ImoveisList } from "@/components/imoveis-list";
+
 
 
 export default function Home() {
@@ -64,7 +64,7 @@ export default function Home() {
           {/* HOUSE IMAGE */}
           <div className="relative w-full h-100 md:h-160 mt-10">
             <Image
-              src="/images/hero/home_hero.jpg"
+              src="/images/hero/hero3d.png"
               alt="Modern House"
               fill
               className="object-contain mix-blend-multiply mask-b-from-fuchsia-50"
@@ -288,7 +288,7 @@ export default function Home() {
             </p>
           </div>
           <div>
-            <ImoveisList />
+            {/* imoveis */}
           </div>
         </div>
       </section>
